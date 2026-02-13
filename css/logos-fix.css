@@ -1,0 +1,57 @@
+.hero-logos-container {
+    position: absolute !important;
+    top: 60px !important;
+    left: 20px !important;
+    z-index: 500 !important;
+    pointer-events: none !important;
+    display: block !important;
+    opacity: 0;
+    transition: opacity 1s ease 0.5s;
+}
+
+/* Visibility trigger when preloader is gone */
+body:not(.no-scroll) .hero-logos-container {
+    opacity: 1 !important;
+}
+
+.top-left-logos-triple {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0px !important;
+    background: transparent !important;
+    /* No box */
+    padding: 0 !important;
+    border: none !important;
+    /* No border */
+    backdrop-filter: none !important;
+    width: fit-content !important;
+}
+
+/* Force large size for images */
+.top-left-logos-triple img {
+    height: 40px !important;
+    width: auto !important;
+    filter: brightness(0) invert(1) !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-block !important;
+}
+
+.logo-separator-pipe {
+    width: 3px !important;
+    height: 55px !important;
+    background: rgba(255, 255, 255, 1) !important;
+    margin: 0 5px !important;
+}
+
+@media (max-width: 768px) {
+    .hero-logos-container {
+        top: 80px !important;
+        left: 20px !important;
+    }
+
+    .top-left-logos-triple img {
+        height: 20px !important;
+    }
+}

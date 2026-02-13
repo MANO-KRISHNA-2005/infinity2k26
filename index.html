@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity 6.0 | PSG Tech</title>
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&family=Michroma&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&family=Playfair+Display:wght@900&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/events.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/logos-fix.css">
+</head>
+
+<body class="no-scroll">
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="oval-container">
+            <div class="ip-wrapper">
+                <svg class="ip" viewBox="0 0 256 128">
+                    <defs>
+                        <linearGradient id="fillGrad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#6a0dad" />
+                            <stop offset="50%" stop-color="#bc13fe" />
+                            <stop offset="100%" stop-color="#d633ff" />
+                        </linearGradient>
+                    </defs>
+                    <path class="ip__shadow"
+                        d="M128,64 C100,115 15,115 15,64 C15,13 100,13 128,64 C156,115 241,115 241,64 C241,13 156,13 128,64 Z"
+                        transform="translate(0, 4)" />
+                    <path class="ip__track"
+                        d="M128,64 C100,115 15,115 15,64 C15,13 100,13 128,64 C156,115 241,115 241,64 C241,13 156,13 128,64 Z" />
+                    <path id="progress-path" class="ip__progress" stroke="url(#fillGrad)"
+                        d="M128,64 C100,115 15,115 15,64 C15,13 100,13 128,64 C156,115 241,115 241,64 C241,13 156,13 128,64 Z" />
+                </svg>
+            </div>
+        </div>
+        <div id="percentage">0%</div>
+        <div class="sync-text">Syncing System</div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo-group">
+                <img src="assets/images/psg college logo.png" alt="PSG">
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-item">Home</a>
+                <a href="#about" class="nav-item">About</a>
+                <a href="#cash-prize" class="nav-item">Cash Prize</a>
+                <a href="#sponsors" class="nav-item">Sponsors</a>
+                <a href="alumni.html" class="nav-item">Alumni</a>
+                <a href="#journey" class="nav-item">Journey</a>
+                <a href="#events" class="nav-item">Events</a>
+                <a href="#contact" class="nav-item">Contact</a>
+                <a href="auth.html" class="nav-btn">Sign In</a>
+            </div>
+            <div class="hamburger" id="hamburger"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- HERO SECTION -->
+        <section id="home" class="hero">
+            <video autoplay muted loop playsinline class="hero-bg" id="heroBg">
+                <source src="assets/videos/bg-video.mp4" type="video/mp4">
+            </video>
+
+            <div class="hero-center-wrapper">
+                <div class="hero-logos-container">
+                    <div class="top-left-logos-triple">
+                        <img src="assets/logo/75.png" alt="75th">
+                        <div class="logo-separator-pipe"></div>
+                        <img src="assets/logo/100.png" alt="100th">
+                        <div class="logo-separator-pipe"></div>
+                        <img src="assets/logo/csa.png" alt="CSA">
+                    </div>
+                </div>
+
+                <div id="shatterBox" class="shatter-box"></div>
+
+                <div class="main-identity" id="mainIdentity">
+                    <img src="assets/images/inifnity-logo-design.png" alt="6.0" class="logo-6" id="logo6">
+                    <h1 class="hero-tagline" id="tagline">BEYOND THE <span class="purple-accent">BINARY</span></h1>
+                </div>
+
+                <!-- TIMER SECTION -->
+                <div class="timer-wrapper" id="timerWrapper">
+                    <h2 class="timer-heading">EVENT BEGINS IN</h2>
+                    <div class="countdown-container">
+                        <div class="countdown-item">
+                            <span id="days">00</span>
+                            <span class="label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="hours">00</span>
+                            <span class="label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes">00</span>
+                            <span class="label">Mins</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="seconds">00</span>
+                            <span class="label">Secs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about-section">
+            <div class="about-parallax-bg" id="aboutBg"></div>
+            <div class="about-overlay"></div>
+
+            <div class="eqty-grid">
+                <div class="about-card">
+                    <div class="label">ESTD 2019</div>
+                    <h2 class="title">ABOUT <span class="purple-accent">US</span></h2>
+                    <div class="divider"></div>
+                    <p>Infinity, a dynamic platform for innovation and excellence organized by the B.Sc Computer Systems
+                        & Design students of the Applied Mathematics & Computational Sciences Department since 2019. We
+                        feature diverse, student-curated events that transform concepts into groundbreaking solutions.
+                        Infinity bridges classroom learning, celebrating creativity, collaboration, and technical
+                        brilliance. With every edition, it inspires participants to refine their skills and unleash
+                        their potential. Join us to experience the journey of Beyond the Binary...</p>
+                </div>
+
+                <div class="strips-container">
+                    <div class="strip s1" style="background-image: url('assets/images/inifnity-logo-design.png');">
+                    </div>
+                    <div class="strip s2" style="background-image: url('assets/images/inifnity-logo-design.png');">
+                    </div>
+                    <div class="strip s3" style="background-image: url('assets/images/inifnity-logo-design.png');">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+
+        <!-- CASH PRIZE SECTION -->
+        <section id="cash-prize" class="prize-section">
+            <div class="outer-frame">
+                <div class="prize-card">
+                    <div class="scan-line"></div>
+                    <div class="corner top-left"></div>
+                    <div class="corner bottom-right"></div>
+
+                    <span class="cyber-label">Victory Rewards</span>
+
+                    <div class="amount-container">
+                        <span class="symbol">₹</span>
+                        <span id="decrypt-text" class="decrypt-box">000,000</span>
+                    </div>
+
+                    <p
+                        style="color: rgba(188, 19, 254, 0.8); font-size: 0.9rem; margin-top: 10px; font-weight: 500; letter-spacing: 1px;">
+                        + Exciting Coupons & Prizes</p>
+
+                    <div class="cyber-footer">
+                        PRIZE_POOL_VALUE :: VERIFIED_TRUE
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+
+        <!-- EVENTS SECTION -->
+        <section id="events" class="events-section">
+            <div class="events-bg-gradient"></div>
+
+            <div class="events-header-content">
+                <h1>Events</h1>
+                <p>TechFest 2026</p>
+            </div>
+
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="technical">Technical</button>
+                <button class="filter-btn" data-filter="non-technical">Non-Technical</button>
+            </div>
+
+            <div class="carousel-container">
+                <button class="carousel-nav prev-btn" id="prevBtn">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+
+                <div class="events-carousel-wrapper">
+                    <div class="events-carousel" id="eventsCarousel">
+                        <!-- ProZone - Flagship Event -->
+                        <div class="event-card flagship" data-category="technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/prozone.png" alt="ProZone">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge flagship-badge">Flagship Event</div>
+                                    <h2 class="event-name">ProZone</h2>
+                                    <h3 class="event-subtitle">Coding Hackathon</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2-3 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 7, 2026 (Sat)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>10:15 AM - 11:00 AM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>SIL LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1</h4>
+                                        <p>Identify errors in logical cases (algorithms, pseudo-code) and explain
+                                            correct logic. No coding allowed.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2</h4>
+                                        <p>Plan and implement a solution for a complete problem statement with specific
+                                            constraints. Simulates hackathon conditions.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Incognito -->
+                        <div class="event-card" data-category="technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/incognito.png" alt="Incognito">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge technical-badge">Technical</div>
+                                    <h2 class="event-name">Incognito</h2>
+                                    <h3 class="event-subtitle">Cyber Security</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 5, 2026 (Thu)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>4:30 PM - 6:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>OCL LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1: Opposite Action & Rapid Quiz</h4>
+                                        <p>Opposite Command Challenge followed by Image–Word Connection puzzles. Highest
+                                            scorers get priority answering rights.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2: Blind Coding Challenge</h4>
+                                        <p>Fix incomplete code on paper (10 mins). Top R1 scorers get a 2-min
+                                            "blindfold-free" advantage.</p>
+                                    </div>
+                                    <div class="round"
+                                        style="font-size: 0.85rem; opacity: 0.8; margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.15);">
+                                        <strong>Tie-Breaker:</strong> Longest technical word wins.
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Inveringo -->
+                        <div class="event-card" data-category="technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/inveringo.png" alt="Inveringo">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge technical-badge">Technical</div>
+                                    <h2 class="event-name">Inveringo</h2>
+                                    <h3 class="event-subtitle">Puzzle Mania</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 5, 2026 (Thu)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>4:30 PM - 6:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>CSL LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1</h4>
+                                        <p>Arrange 9 numbers in a 3x3 matrix. Solve questions for each number called.
+                                            Score 3 consecutive numbers to decode encrypted letters.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2</h4>
+                                        <p>Determine the input for a given output. If wrong, the result becomes the next
+                                            output. Continue until final solution.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+
+                        <!-- TechRush -->
+                        <div class="event-card" data-category="technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/techrush.png" alt="TechRush">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge technical-badge">Technical</div>
+                                    <h2 class="event-name">TechRush</h2>
+                                    <h3 class="event-subtitle">Startup Pitch</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 7, 2026 (Sat)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>10:30 AM - 12:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>UGCC LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1</h4>
+                                        <p>Scan QR codes in assigned blocks to find clues. Assemble shuffled pseudocode
+                                            and implement it to display the correct output.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Swaptics -->
+                        <div class="event-card" data-category="technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/swaptics.png" alt="Swaptics">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge technical-badge">Technical</div>
+                                    <h2 class="event-name">Swaptics</h2>
+                                    <h3 class="event-subtitle">Tech Quiz</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 5, 2026 (Thu)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>4:30 PM - 6:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>UGCC LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1</h4>
+                                        <p>Solve chit sheets to navigate across systems. Swap locations to find a final
+                                            sentence and qualify.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2</h4>
+                                        <p>Swap questions with other teams. Solve swapped questions within time. Teams
+                                            with least questions remaining win.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Fusion Frames -->
+                        <div class="event-card" data-category="non-technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/fusion.jpg" alt="Fusion Frames">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge non-technical-badge">Non-Technical</div>
+                                    <h2 class="event-name">Fusion Frames</h2>
+                                    <h3 class="event-subtitle">Design Challenge</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 5, 2026 (Thu)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>4:30 PM - 6:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>SIL LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1: UI / Visual Interface</h4>
+                                        <p>Design a single-screen interface on a spot theme. Monitor-off hindrance with
+                                            image-quiz obstacles to test adaptability.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2: Website Designing</h4>
+                                        <p>Create 3 responsive linked screens (Home, Content, Contact) in 45 mins. Stay
+                                            focused during coordinator distractions.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+
+                        <!-- GameHolix -->
+                        <div class="event-card" data-category="non-technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/gameholix.png" alt="GameHolix">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge non-technical-badge">Non-Technical</div>
+                                    <h2 class="event-name">GameHolix</h2>
+                                    <h3 class="event-subtitle">Gaming Championship</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>Solo</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 6, 2026 (Fri)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>4:30 PM - 6:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>M503</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1</h4>
+                                        <p>Solo match. Points based on placement and kills.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2</h4>
+                                        <p>Second solo match. Same scoring system applies to cumulative points.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Tech Arcade -->
+                        <div class="event-card" data-category="non-technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/techarcade.jpg" alt="Tech Arcade">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge non-technical-badge">Non-Technical</div>
+                                    <h2 class="event-name">Tech Arcade</h2>
+                                    <h3 class="event-subtitle">Innovation Expo</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 5 & 6, 2026</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>4:30 PM - 6:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>K502</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1</h4>
+                                        <p>Coordination game: Tilt cardboard to guide balls into cups without using
+                                            hands.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2</h4>
+                                        <p>Accuracy shopping: Buy items for a specific amount with long decimal prices
+                                            under pressure.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 3</h4>
+                                        <p>Dice & Charades: Roll for target number, then act out logos/objects for
+                                            teammate.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 4</h4>
+                                        <p>Secret Code: Recreate a secret code using limited (yes/no/rule-based)
+                                            communication.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+
+                        <!-- CLONES FOR INFINITE LOOP -->
+                        <!-- ProZone Clone -->
+                        <div class="event-card flagship" data-category="technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/prozone.png" alt="ProZone">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge flagship-badge">Flagship Event</div>
+                                    <h2 class="event-name">ProZone</h2>
+                                    <h3 class="event-subtitle">Coding Hackathon</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2-3 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 7, 2026 (Sat)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>10:15 AM - 11:00 AM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>SIL LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1</h4>
+                                        <p>Identify errors in logical cases (algorithms, pseudo-code) and explain
+                                            correct logic. No coding allowed.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2</h4>
+                                        <p>Plan and implement a solution for a complete problem statement with specific
+                                            constraints. Simulates hackathon conditions.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+                        <!-- Incognito Clone -->
+                        <div class="event-card" data-category="technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/incognito.png" alt="Incognito">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge technical-badge">Technical</div>
+                                    <h2 class="event-name">Incognito</h2>
+                                    <h3 class="event-subtitle">Cyber Security</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 5, 2026 (Thu)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>4:30 PM - 6:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>OCL LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1: Opposite Action & Rapid Quiz</h4>
+                                        <p>Opposite Command Challenge followed by Image–Word Connection puzzles. Highest
+                                            scorers get priority answering rights.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2: Blind Coding Challenge</h4>
+                                        <p>Fix incomplete code on paper (10 mins). Top R1 scorers get a 2-min
+                                            "blindfold-free" advantage.</p>
+                                    </div>
+                                    <div class="round"
+                                        style="font-size: 0.85rem; opacity: 0.8; margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.15);">
+                                        <strong>Tie-Breaker:</strong> Longest technical word wins.
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+                        <!-- Inveringo Clone -->
+                        <div class="event-card" data-category="technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/inveringo.png" alt="Inveringo">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge technical-badge">Technical</div>
+                                    <h2 class="event-name">Inveringo</h2>
+                                    <h3 class="event-subtitle">Puzzle Mania</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 5, 2026 (Thu)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>4:30 PM - 6:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>CSL LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1</h4>
+                                        <p>Arrange 9 numbers in a 3x3 matrix. Solve questions for each number called.
+                                            Score 3 consecutive numbers to decode encrypted letters.</p>
+                                    </div>
+                                    <div class="round">
+                                        <h4>Round 2</h4>
+                                        <p>Determine the input for a given output. If wrong, the result becomes the next
+                                            output. Continue until final solution.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+                        <!-- TechRush Clone -->
+                        <div class="event-card" data-category="technical">
+                            <div class="event-header">
+                                <div class="event-image-container">
+                                    <img src="assets/images/techrush.png" alt="TechRush">
+                                </div>
+                                <div class="event-title-details">
+                                    <div class="event-badge technical-badge">Technical</div>
+                                    <h2 class="event-name">TechRush</h2>
+                                    <h3 class="event-subtitle">Startup Pitch</h3>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-info">
+                                    <div class="info-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span>2 participants</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-calendar-event-fill"></i>
+                                        <span>March 7, 2026 (Sat)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-clock-fill"></i>
+                                        <span>10:30 AM - 12:30 PM</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                        <span>UGCC LAB</span>
+                                    </div>
+                                </div>
+                                <div class="event-rounds">
+                                    <div class="round">
+                                        <h4>Round 1</h4>
+                                        <p>Scan QR codes in assigned blocks to find clues. Assemble shuffled pseudocode
+                                            and implement it to display the correct output.</p>
+                                    </div>
+                                </div>
+                                <button class="register-btn">Register Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-nav next-btn" id="nextBtn">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+
+        <!-- SPONSORS SECTION -->
+        <section id="sponsors" class="sponsors-section">
+            <header class="main-header">
+                <h1>Our Partners & Sponsors</h1>
+                <p class="subtitle">Making this event possible with their generous support</p>
+            </header>
+
+            <!-- Associate Sponsors -->
+            <section class="sponsor-section associate-sponsor">
+                <div class="sponsor-grid medium-grid">
+                    <div class="sponsor-card">
+                        <div class="logo-box">
+                            <img src="assets/sponers/miskha.jpeg" alt="miskha">
+                            <div class="infinity-reveal">
+                                <span>Supporting Sponsor</span>
+                                <svg class="infinity-svg" viewBox="0 0 200 100">
+                                    <path class="celestial-base"
+                                        d="M100,50 C120,10 180,10 180,50 C180,90 120,90 100,50 C80,90 20,90 20,50 C20,10 80,10 100,50" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="logo-box">
+                            <img src="assets/images/creamery.jpeg" alt="soon">
+                            <div class="infinity-reveal">
+                                <span>Associate Sponsor</span>
+                                <svg class="infinity-svg" viewBox="0 0 200 100">
+                                    <path class="celestial-base"
+                                        d="M100,50 C120,10 180,10 180,50 C180,90 120,90 100,50 C80,90 20,90 20,50 C20,10 80,10 100,50" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="logo-box">
+                            <img src="assets/images/si_globals.jpeg" alt="soon">
+                            <div class="infinity-reveal">
+                                <span>Associate Sponsor</span>
+                                <svg class="infinity-svg" viewBox="0 0 200 100">
+                                    <path class="celestial-base"
+                                        d="M100,50 C120,10 180,10 180,50 C180,90 120,90 100,50 C80,90 20,90 20,50 C20,10 80,10 100,50" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Supporting Sponsors -->
+            <section class="sponsor-section associate-sponsor">
+                <div class="sponsor-grid medium-grid">
+                    <div class="sponsor-card">
+                        <div class="logo-box">
+                            <img src="assets/images/psr.jpeg" alt="soon">
+                            <div class="infinity-reveal">
+                                <span>Supporting Sponsor</span>
+                                <svg class="infinity-svg" viewBox="0 0 200 100">
+                                    <path class="celestial-base"
+                                        d="M100,50 C120,10 180,10 180,50 C180,90 120,90 100,50 C80,90 20,90 20,50 C20,10 80,10 100,50" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="logo-box">
+                            <img src="assets/images/ShreeDevi.jpeg" alt="soon">
+                            <div class="infinity-reveal">
+                                <span>Supporting Sponsor</span>
+                                <svg class="infinity-svg" viewBox="0 0 200 100">
+                                    <path class="celestial-base"
+                                        d="M100,50 C120,10 180,10 180,50 C180,90 120,90 100,50 C80,90 20,90 20,50 C20,10 80,10 100,50" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="logo-box">
+                            <img src="assets/images/tbs.jpeg" alt="soon">
+                            <div class="infinity-reveal">
+                                <span>Supporting Sponsor</span>
+                                <svg class="infinity-svg" viewBox="0 0 200 100">
+                                    <path class="celestial-base"
+                                        d="M100,50 C120,10 180,10 180,50 C180,90 120,90 100,50 C80,90 20,90 20,50 C20,10 80,10 100,50" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alumni Sponsors Horizontal Scroll -->
+            <section class="alumni-sponsors-section">
+                <div class="alumni-message">
+                    <h2 class="alumni-title">SPECIAL THANKS TO ALUMNI</h2>
+                    <p class="alumni-subtitle">Grateful for our Alumni - Your support shapes our Future!</p>
+                </div>
+
+                <!-- First Row - Scrolling Right -->
+                <div class="scroll-container">
+                    <div class="scroll-track scroll-right">
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#17x0__</div>
+                        <div class="alumni-badge">#05x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#16x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#09x0__</div>
+                        <div class="alumni-badge">#19x0__</div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#17x0__</div>
+                        <div class="alumni-badge">#05x0__</div>
+                        <div class="alumni-badge">#06x0___</div>
+                        <div class="alumni-badge">#16x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#09x0__</div>
+                        <div class="alumni-badge">#19x0__</div>
+                    </div>
+                </div>
+
+                <!-- Second Row - Scrolling Left -->
+                <div class="scroll-container">
+                    <div class="scroll-track scroll-left">
+                        <div class="alumni-badge">#05x0__</div>
+                        <div class="alumni-badge">#20x0__</div>
+                        <div class="alumni-badge">#16x0__</div>
+                        <div class="alumni-badge">#07x0__</div>
+                        <div class="alumni-badge">#19x0__</div>
+                        <div class="alumni-badge">#21x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#17x0__</div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="alumni-badge">#05x0__</div>
+                        <div class="alumni-badge">#20x0__</div>
+                        <div class="alumni-badge">#16x0__</div>
+                        <div class="alumni-badge">#07x0__</div>
+                        <div class="alumni-badge">#19x0__</div>
+                        <div class="alumni-badge">#21x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#17x0__</div>
+                    </div>
+                </div>
+
+                <!-- Third Row - Scrolling Right -->
+                <div class="scroll-container">
+                    <div class="scroll-track scroll-right">
+                        <div class="alumni-badge">#20x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#09x0__</div>
+                        <div class="alumni-badge">#17x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#08x0__</div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="alumni-badge">#20x0__</div>
+                        <div class="alumni-badge">#21x0__</div>
+                        <div class="alumni-badge">#06x0__</div>
+                        <div class="alumni-badge">#18x0__</div>
+                        <div class="alumni-badge">#09x0__</div>
+                        <div class="alumni-badge">#17x0__</div>
+                        <div class="alumni-badge">#05x0__</div>
+                        <div class="alumni-badge">#08x0__</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Event Registration & Alumni Thanks -->
+            <section class="sponsor-section registration-section">
+                <div class="special-thanks-box">
+                    <h2 class="section-title">Join The Experience</h2>
+                    <p>Secure your spot at the most anticipated tech fest of the year.</p>
+                    <a href="alumni.html"><button id="alumniRegistrationBtn" class="cta-button">Alumni
+                            Registration</button></a>
+                </div>
+            </section>
+        </section>
+        <div class="section-divider"></div>
+
+        <!-- OUR LEGACY SECTION -->
+        <section id="legacy" class="legacy-section">
+            <div class="legacy-title">OUR LEGACY</div>
+            <main class="carousel">
+                <div class="carousel-item">
+                    <div class="item">
+                        <img src="assets/gallery/Infinity-1.1.JPG" alt="1">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="item">
+                        <img src="assets/gallery/Infinity-1.3.JPG" alt="2">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="item">
+                        <img src="assets/gallery/Infinity-2.7.JPG" alt="3">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="item">
+                        <img src="assets/gallery/Infinity-2.9.JPG" alt="4">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="item">
+                        <img src="assets/gallery/Infinity-4 (1).JPG" alt="5">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="item">
+                        <img src="assets/gallery/Infinity-4 (14).JPG" alt="6">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="item">
+                        <img src="assets/gallery/Infinity-4 (24).JPG" alt="7">
+                    </div>
+                    <div class="carousel-item">
+                        <div class="item">
+                            <img src="assets/gallery/Infinity-5 (1).JPG" alt="8">
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </section>
+        <div class="section-divider"></div>
+
+        <!-- OUR JOURNEY SECTION -->
+        <section id="journey" class="journey-section">
+            <div class="journey-pin">
+                <div class="journey-title">OUR JOURNEY</div>
+                <div class="journey-image">
+                    <img src="assets/journey/2019.jpeg">
+                    <div class="journey-caption">2019</div>
+                </div>
+                <div class="journey-image">
+                    <img src="assets/journey/2020.jpeg">
+                    <div class="journey-caption">2020</div>
+                </div>
+                <div class="journey-image">
+                    <img src="assets/journey/2022.jpeg">
+                    <div class="journey-caption">2022</div>
+                </div>
+                <div class="journey-image">
+                    <img src="assets/journey/2023.jpeg">
+                    <div class="journey-caption">2023</div>
+                </div>
+                <div class="journey-image">
+                    <img src="assets/journey/2024.jpeg">
+                    <div class="journey-caption">2024</div>
+                </div>
+                <div class="journey-image">
+                    <img src="assets/journey/2025.jpeg">
+                    <div class="journey-caption">2025</div>
+                </div>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+
+        <!-- TEAM JACKPOT SECTION -->
+        <section id="team" class="team-section">
+            <div class="team-title">CORE TEAM</div>
+            <div class="jackpot-wrapper">
+                <div class="team-container">
+                    <div class="window-overlay"></div>
+
+                    <!-- Designations -->
+                    <div class="slot left-side">
+                        <ul id="designation-list"></ul>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- Names -->
+                    <div class="slot right-side">
+                        <ul id="name-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="contact-section">
+            <div class="contact-header">
+                <h2 class="section-title">GET IN TOUCH</h2>
+                <div class="section-divider-small"></div>
+                <p class="contact-subtitle">We'd love to hear from you. Reach out with any questions!</p>
+            </div>
+
+            <div class="contact-container">
+                <!-- Contact Info Cards -->
+                <div class="contact-info">
+                    <!-- Location -->
+                    <div class="contact-card">
+                        <div class="icon-box">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div class="card-content">
+                            <p>PSG College of Technology, Peelamedu, Coimbatore - 641004, Tamil Nadu, India</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="contact-card">
+                        <div class="icon-box">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-person">
+                                <span class="name">VISHAAL MUTHUKUMAR</span>
+                                <a href="https://wa.me/919345757074" class="phone">+91 9345757074 <i
+                                        class="bi bi-whatsapp"></i></a>
+                            </div>
+                            <div class="contact-person">
+                                <span class="name">MANO KRISHNA S R</span>
+                                <a href="https://wa.me/919600766305" class="phone">+91 9600766305 <i
+                                        class="bi bi-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-card">
+                        <div class="icon-box">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div class="card-content">
+                            <a href="mailto:infinity@psgtech.ac.in" class="email-link">infinity@psgtech.ac.in</a>
+                        </div>
+                    </div>
+
+                    <!-- Instagram -->
+                    <div class="contact-card">
+                        <div class="icon-box">
+                            <i class="bi bi-instagram"></i>
+                        </div>
+                        <div class="card-content">
+                            <a href="https://instagram.com/infinitypsg" target="_blank"
+                                class="social-link">@infinitypsg</a>
+                        </div>
+                        <div class="card-content">
+                            <a href="https://www.instagram.com/p/C9FD_iyy4av/?utm_source=ig_web_copy_link"
+                                target="_blank" class="social-link">@csa.amcs</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.1472986423!2d77.00067631533554!3d11.027599992151616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8582f1da74d39%3A0x6bba223d6a2f4da8!2sPSG%20College%20of%20Technology!5e0!3m2!1sen!2sin!4v1677654321098!5m2!1sen!2sin"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <p>&copy; 2026 INFINITY | PSG COLLEGE OF TECHNOLOGY. ALL RIGHTS RESERVED.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- REGISTRATION MODAL -->
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="orbitron-title">Event Registration</h2>
+            <div id="myRegistrations" class="my-registrations-container" style="display: none;">
+                <h3 class="section-title">My Registered Events</h3>
+                <div id="registeredEventsList" class="registered-events-list">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+            <form id="eventRegistrationForm">
+                <div class="form-group">
+                    <label>Select Event(s) <span class="required">*</span></label>
+                    <div class="events-checkbox-grid" id="eventsCheckboxContainer">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="eventCheck" value="ProZone">
+                            <span class="checkbox-text">ProZone</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="eventCheck" value="Incognito">
+                            <span class="checkbox-text">Incognito</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="eventCheck" value="Inveringo">
+                            <span class="checkbox-text">Inveringo</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="eventCheck" value="TechRush">
+                            <span class="checkbox-text">TechRush</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="eventCheck" value="Swaptics">
+                            <span class="checkbox-text">Swaptics</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="eventCheck" value="Fusion Frames">
+                            <span class="checkbox-text">Fusion Frames</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="eventCheck" value="GameHolix">
+                            <span class="checkbox-text">GameHolix</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="eventCheck" value="Tech Arcade">
+                            <span class="checkbox-text">Tech Arcade</span>
+                        </label>
+                    </div>
+                </div>
+
+                <h3 class="section-title">Academic Details</h3>
+                <div class="form-group">
+                    <select id="regDegree" required>
+                        <option value="">Select Degree</option>
+                        <option value="B.E">B.E / B.Tech</option>
+                        <option value="B.E (Sandwich)">B.E (Sandwich)</option>
+                        <option value="M.E">M.E / M.Tech</option>
+                        <option value="M.Sc">M.Sc</option>
+                        <option value="B.Sc">B.Sc</option>
+                        <option value="MCA">MCA</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="regYear" required disabled>
+                        <option value="">Year of Study</option>
+                    </select>
+                </div>
+
+                <h3 class="section-title">Contact Information</h3>
+                <div class="form-group">
+                    <input type="text" id="regName" placeholder="Full Name" required readonly>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="regRollNo" placeholder="Roll Number (e.g., 22L123)" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="regEmail" placeholder="Please enter official mail ID (@psgtech.ac.in)"
+                        pattern=".+@psgtech\.ac\.in" title="Please use your official @psgtech.ac.in email ID" required>
+                    <small class="form-hint">Official Institution Email (@psgtech.ac.in) Required</small>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="regPhone" placeholder="Phone Number (10 Digits)" pattern="[0-9]{10}"
+                        maxlength="10" required title="Please enter a valid 10-digit phone number">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="regCourse" placeholder="Department (e.g., CSE)" required>
+                </div>
+
+                <div id="teammateSection">
+                    <h3 class="section-title">Team Mate (Optional for Solo Events)</h3>
+                    <div class="form-group">
+                        <input type="text" id="teammateName" placeholder="Team Mate Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="teammateRollNo" placeholder="Team Mate Roll Number">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="teammateEmail" placeholder="Team Mate Email (@psgtech.ac.in)"
+                            pattern=".+@psgtech\.ac\.in" title="Please use official @psgtech.ac.in email ID">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="teammatePhone" placeholder="Team Mate Phone">
+                    </div>
+                </div>
+
+                <button type="submit" class="cta-button">Confirm Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/firebase-config.js?v=1.4"></script>
+    <script type="module" src="js/auth.js?v=1.4"></script>
+    <script type="module" src="js/events.js?v=1.4"></script>
+    <script src="js/script.js?v=1.4"></script>
+    <script src="js/animations.js?v=1.4"></script>
+</body>
+
+</html>

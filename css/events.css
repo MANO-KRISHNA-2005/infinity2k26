@@ -1,0 +1,595 @@
+/* --- EVENTS SECTION STYLES --- */
+:root {
+    /* Mapping provided variables to existing theme */
+    --primary-purple: var(--logo-violet);
+    /* #6a0dad */
+    --secondary-purple: var(--logo-purple);
+    /* #bc13fe */
+    --accent-purple: var(--logo-magenta);
+    /* #d633ff */
+
+    /* Backgrounds */
+    --deep-black: var(--bg-dark);
+    --dark-gray: #0d001a;
+    --medium-gray: #1a0525;
+
+    /* Text */
+    --light-gray: #e0e0e0;
+    --white: #ffffff;
+
+    /* Category Colors */
+    --technical-color: #2196f3;
+    /* Blue */
+    --non-technical-color: #4caf50;
+    /* Green */
+    --flagship-color: #ff9800;
+    /* Orange */
+
+    /* Transparency/Shadows */
+    --transparency-light: rgba(188, 19, 254, 0.1);
+    --transparency-medium: rgba(188, 19, 254, 0.3);
+    --transparency-heavy: rgba(188, 19, 254, 0.6);
+    --glass-light: rgba(255, 255, 255, 0.05);
+    --glass-medium: rgba(255, 255, 255, 0.1);
+    --glass-heavy: rgba(255, 255, 255, 0.15);
+
+    /* Shadow Values */
+    --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.2);
+    --shadow-medium: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --shadow-heavy: 0 16px 32px rgba(0, 0, 0, 0.4);
+    --shadow-purple: 0 4px 15px rgba(188, 19, 254, 0.2);
+}
+
+.events-section {
+    position: relative;
+    padding: 60px 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background: transparent;
+    /* Use main body background */
+}
+
+/* Background Gradient Effect - Specific to this section */
+.events-bg-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(106, 13, 173, 0.15) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Header Styles for Events */
+.events-header-content {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.events-header-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    /* Maintaining code structure */
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-shadow: 0 0 20px var(--logo-purple);
+    text-transform: uppercase;
+}
+
+.events-header-content p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    color: var(--logo-magenta);
+    opacity: 0.9;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Filter Controls */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    width: 100%;
+    z-index: 10;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(255, 255, 255, 0.05);
+    /* Glass effect */
+    color: var(--light-gray);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 5px;
+    /* Boxy look for sci-fi feel */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filter-btn:hover {
+    background: rgba(188, 19, 254, 0.2);
+    border-color: var(--logo-purple);
+    box-shadow: 0 0 10px var(--logo-purple);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--logo-purple);
+    color: var(--white);
+    border-color: var(--logo-purple);
+    box-shadow: 0 0 15px var(--logo-purple);
+}
+
+/* Carousel Container */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    height: 600px;
+    /* Fixed height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* overflow: visible; Let effects spill out */
+}
+
+.events-carousel-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    /* mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); */
+}
+
+.events-carousel {
+    display: flex;
+    gap: 2rem;
+    padding: 20px 0;
+    /* Space for shadows */
+    height: 100%;
+    align-items: center;
+    /* Center cards vertically */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+/* Event Card Styles */
+.event-card {
+    flex: 0 0 auto;
+    width: 380px;
+    background: rgba(13, 0, 26, 0.8);
+    /* Dark purple bg */
+    border: 1px solid rgba(188, 19, 254, 0.3);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 520px;
+    /* Fixed height for uniformity */
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.event-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--logo-magenta);
+    box-shadow: 0 0 30px rgba(188, 19, 254, 0.4);
+    z-index: 5;
+}
+
+.event-card.flagship {
+    width: 500px;
+    border: 2px solid var(--flagship-color);
+    box-shadow: 0 0 25px rgba(255, 152, 0, 0.2);
+}
+
+.event-header {
+    position: relative;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(188, 19, 254, 0.1);
+}
+
+.event-image-container {
+    flex: 0 0 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--logo-magenta);
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
+}
+
+.event-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.event-title-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-badge {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    top: 0;
+    right: 0;
+    margin-bottom: 5px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.6rem;
+}
+
+.technical-badge {
+    background: rgba(33, 150, 243, 0.9);
+    color: var(--white);
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+}
+
+.non-technical-badge {
+    background: rgba(76, 175, 80, 0.9);
+    color: var(--white);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.flagship-badge {
+    background: rgba(255, 152, 0, 0.9);
+    color: var(--white);
+    font-size: 0.8rem;
+    padding: 6px 15px;
+    animation: glow-pulse 2s infinite;
+}
+
+@keyframes glow-pulse {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 152, 0, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+    }
+}
+
+.event-image {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0.8;
+}
+
+.event-card:hover .event-image img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Event Content */
+.event-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.event-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    /* Slightly smaller to fit in header */
+    font-weight: 800;
+    color: var(--white);
+    margin: 0;
+    position: relative;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    line-height: 1.2;
+}
+
+.flagship .event-name {
+    font-size: 1.5rem;
+    color: var(--flagship-color);
+    text-shadow: 0 0 10px rgba(255, 152, 0, 0.4);
+}
+
+.event-subtitle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    color: var(--logo-magenta);
+    margin: 3px 0 0 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.event-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--light-gray);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-item i {
+    color: var(--logo-magenta);
+    width: 14px;
+    text-align: center;
+}
+
+.event-rounds {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 1.2rem;
+    max-height: 140px;
+    padding-right: 5px;
+    /* Custom Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--logo-purple) rgba(255, 255, 255, 0.05);
+}
+
+.event-rounds::-webkit-scrollbar {
+    width: 4px;
+}
+
+.event-rounds::-webkit-scrollbar-thumb {
+    background: var(--logo-purple);
+    border-radius: 2px;
+}
+
+.round {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 2px solid var(--logo-purple);
+}
+
+.round h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    color: var(--logo-magenta);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.round p,
+.round li {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.4;
+    margin-bottom: 5px;
+}
+
+.round ul {
+    margin-left: 1.2rem;
+}
+
+.register-btn {
+    font-family: 'Orbitron', sans-serif;
+    background: transparent;
+    color: var(--logo-purple);
+    border: 1px solid var(--logo-purple);
+    padding: 0.8rem 0;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-btn:hover {
+    background: var(--logo-purple);
+    color: var(--white);
+    box-shadow: 0 0 20px var(--logo-purple);
+}
+
+/* Nav Buttons */
+.carousel-nav {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /* Or keep boxy for consistency? Circle is fine */
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--logo-purple);
+    color: var(--logo-purple);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.carousel-nav:hover {
+    background: var(--logo-purple);
+    color: var(--white);
+    box-shadow: 0 0 15px var(--logo-purple);
+    transform: scale(1.1);
+}
+
+.carousel-nav:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    border-color: #555;
+    color: #555;
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+/* Hide Nav Utility */
+.hide-nav {
+    display: none !important;
+}
+
+/* Infinite Scroll Animation */
+.events-carousel.scrolling-mode {
+    animation: continuousScroll 60s linear infinite;
+    /* Slower for readability */
+}
+
+@keyframes continuousScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.events-carousel.scrolling-mode:hover {
+    animation-play-state: paused;
+}
+
+.events-carousel.centered-mode {
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Loop Spacer */
+.loop-spacer {
+    width: 50px;
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .event-card {
+        width: 340px;
+    }
+
+    .event-card.flagship {
+        width: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .events-carousel-wrapper {
+        overflow: hidden;
+        /* Changed from auto to allow JS/CSS control */
+        display: flex;
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+    .carousel-container {
+        height: auto;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .events-carousel {
+        width: max-content;
+        gap: 15px;
+        padding-left: 15px;
+        /* Ensure first card isn't cut off */
+    }
+
+    .event-card {
+        width: 300px !important;
+        margin-right: 0;
+        height: 500px;
+        min-height: auto;
+    }
+
+    .event-card.flagship {
+        width: 320px !important;
+    }
+
+    .carousel-nav {
+        display: flex;
+        /* Restore arrows on mobile */
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .prev-btn {
+        left: 5px;
+    }
+
+    .next-btn {
+        right: 5px;
+    }
+
+    .filter-container {
+        flex-direction: row;
+        /* Keep buttons in a row if possible or wrapped */
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        width: auto;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
