@@ -7,20 +7,14 @@ $daily_query = $pdo->query("SELECT DATE(created_at) as date, COUNT(*) as count F
 $daily_data = $daily_query->fetchAll();
 
 // Fetch event-wise registration count
-$event_query = $pdo->query("SELECT events, COUNT(*) as count FROM registrations GROUP BY events");
+$event_query = $pdo->query("SELECT event_name, COUNT(*) as count FROM registrations GROUP BY event_name");
 $event_data = $event_query->fetchAll();
 
-// Flatten event counts (since multiple can be in one string)
+// Prepare event counts
 $event_counts = [];
 foreach ($event_data as $row) {
-    if (empty($row['events'])) continue;
-    $events = explode(", ", $row['events']);
-    foreach ($events as $e) {
-        $e = trim($e);
-        if ($e) {
-            $event_counts[$e] = ($event_counts[$e] ?? 0) + $row['count'];
-        }
-    }
+    if (empty($row['event_name'])) continue;
+    $event_counts[$row['event_name']] = $row['count'];
 }
 
 // Convert to JS readable format
@@ -29,6 +23,10 @@ $daily_values = json_encode(array_column($daily_data, 'count'));
 
 $event_labels = json_encode(array_keys($event_counts));
 $event_values = json_encode(array_values($event_counts));
+
+// Fetch alumni count
+$alumni_count_query = $pdo->query("SELECT COUNT(*) FROM alumni_registrations");
+$alumni_total = $alumni_count_query->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,6 +122,7 @@ $event_values = json_encode(array_values($event_counts));
         <a href="manage_publicity.php" class="nav-item">Manage Publicity</a>
         <a href="registrations.php" class="nav-item">Registrations</a>
         <a href="alumni_list.php" class="nav-item">Alumni Registrations</a>
+        <a href="../php/coins.php" class="nav-item">Infinity Coins <i class="bi bi-coin"></i></a>
         <a href="../publicity.php" class="nav-item" target="_blank">Publicity Portal <i class="bi bi-box-arrow-up-right"></i></a>
         <a href="export.php" class="nav-item">Export Reports</a>
         <br><br>
@@ -143,6 +142,11 @@ $event_values = json_encode(array_values($event_counts));
             <div class="chart-card">
                 <h3>Event-wise Registration</h3>
                 <canvas id="eventChart"></canvas>
+            </div>
+            <div class="chart-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <h3 style="margin-bottom: 10px;">Total Alumni Registrations</h3>
+                <div style="font-size: 4rem; font-family: 'Orbitron'; color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.4);"><?php echo $alumni_total; ?></div>
+                <a href="alumni_list.php" class="nav-item" style="border: none; margin-top: 20px;">View All Alumni</a>
             </div>
         </div>
     </div>

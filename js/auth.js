@@ -1,4 +1,4 @@
-import { auth, googleProvider } from './firebase-config.js';
+import { auth, googleProvider } from './firebase-config-module.js';
 import {
     signOut,
     onAuthStateChanged,
@@ -12,16 +12,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const googleSignInBtn = document.getElementById('googleSignInBtn');
     if (googleSignInBtn) {
         googleSignInBtn.addEventListener('click', async (e) => {
-            e.preventDefault(); // Prevent default link behavior
+            e.preventDefault();
+
+            // Prevent multiple clicks
+            if (googleSignInBtn.disabled) return;
+
+            const originalText = googleSignInBtn.innerHTML;
+            googleSignInBtn.innerHTML = `<i class="bi bi-hourglass-split"></i> Signing in...`;
+            googleSignInBtn.disabled = true;
+            googleSignInBtn.style.opacity = "0.7";
+            googleSignInBtn.style.cursor = "not-allowed";
+
             try {
                 const result = await signInWithPopup(auth, googleProvider);
                 const user = result.user;
                 console.log("Google Sign-In Success:", user);
-                alert(`Welcome, ${user.displayName}!`);
-                window.location.href = "index.html"; // Redirect to home on success
+                window.location.href = "index.html";
             } catch (error) {
                 console.error("Google Sign-In Error:", error);
-                alert(`Google Sign-In Failed: ${error.message}`);
+                // Re-enable if it was a user cancellation, otherwise alert
+                if (error.code !== 'auth/popup-closed-by-user') {
+                    alert(`Google Sign-In Failed: ${error.message}`);
+                }
+                // Reset button
+                googleSignInBtn.innerHTML = originalText;
+                googleSignInBtn.disabled = false;
+                googleSignInBtn.style.opacity = "1";
+                googleSignInBtn.style.cursor = "pointer";
             }
         });
     }

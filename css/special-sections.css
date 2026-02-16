@@ -1,0 +1,323 @@
+/* --- Dual Split Section (Cash Prize & Coin System) --- */
+.dual-split-section {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 500px;
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+.split-left,
+.split-right {
+    flex: 1;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    position: relative;
+    border-right: 1px solid var(--border);
+    text-align: center;
+}
+
+.split-right {
+    border-right: none;
+}
+
+@media (max-width: 768px) {
+
+    .split-left,
+    .split-right {
+        flex: 1 1 50%;
+        min-width: 0;
+        padding: 40px 20px;
+    }
+
+    .split-left {
+        border-right: 1px solid var(--border);
+    }
+}
+
+@media (max-width: 480px) {
+    .dual-split-section {
+        flex-wrap: nowrap;
+    }
+
+    .split-left,
+    .split-right {
+        padding: 30px 10px;
+    }
+
+    .split-left h2,
+    .split-right h2 {
+        font-size: 1.1rem !important;
+    }
+
+    .split-left p,
+    .split-right p {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* --- Coin System Styles --- */
+.coin-section {
+    padding: 0;
+    background: transparent;
+    width: 100%;
+}
+
+.coin-container {
+    perspective: 1000px;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 30px auto;
+}
+
+.coin-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: coinFloat 4s ease-in-out infinite;
+}
+
+@keyframes coinFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotateY(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotateY(180deg);
+    }
+}
+
+.coin-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffd700, #b8860b);
+    border: 8px solid #daa520;
+    box-shadow: 0 0 40px rgba(188, 19, 254, 0.4);
+}
+
+.coin-face img {
+    width: 85%;
+    /* INCREASED LOGO SIZE */
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+}
+
+.coin-face.back {
+    transform: rotateY(180deg);
+}
+
+.coin-description {
+    color: var(--text-gray);
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* --- Cash Prize Adjusted for Split --- */
+.split-prize-card {
+    width: 100%;
+    max-width: 400px;
+}
+
+.split-prize-card .amount-container {
+    font-size: 2.5rem;
+}
+
+/* --- Elevated E-Magazine Section --- */
+.magazine-section {
+    padding: 60px 20px;
+    background: radial-gradient(circle at center, rgba(188, 19, 254, 0.05) 0%, transparent 80%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.magazine-3d-viewport {
+    perspective: 2000px;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* 3D Magazine Mockup */
+.magazine-mockup {
+    width: 300px;
+    height: 420px;
+    margin: 0 auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(-25deg) rotateX(15deg);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.magazine-mockup:hover {
+    transform: rotateY(-10deg) rotateX(5deg) scale(1.05);
+}
+
+.magazine-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #0a050f;
+    border: 1px solid rgba(188, 19, 254, 0.3);
+    box-shadow: 0 0 30px rgba(188, 19, 254, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.magazine-page.cover {
+    z-index: 5;
+    background: linear-gradient(135deg, #1a0b2e 0%, #0a050f 100%);
+    border: 2px solid var(--logo-purple);
+}
+
+.magazine-page.cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.magazine-page.cover::before {
+    content: 'INFINITY v6.0';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron';
+    font-size: 1.5rem;
+    color: var(--white);
+    text-shadow: 0 0 20px var(--logo-purple);
+    z-index: 6;
+    letter-spacing: 5px;
+    white-space: nowrap;
+}
+
+/* Scanning Beam Animation */
+.scanning-beam {
+    position: absolute;
+    top: 0;
+    left: -20%;
+    width: 140%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #bc13fe, #ff00ff, #bc13fe, transparent);
+    box-shadow: 0 0 20px #bc13fe, 0 0 40px #ff00ff;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    filter: blur(1px);
+}
+
+/* Terminal Feed */
+.terminal-overlay {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 250px;
+    text-align: left;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--logo-purple);
+    opacity: 0.8;
+    pointer-events: none;
+    background: rgba(10, 5, 15, 0.8);
+    padding: 10px;
+    border-left: 2px solid var(--logo-purple);
+    z-index: 25;
+}
+
+.terminal-line {
+    margin-bottom: 4px;
+    display: block;
+}
+
+.magazine-header h2 {
+    font-family: 'Orbitron';
+    font-size: 2.8rem !important;
+    letter-spacing: 4px;
+    text-shadow: 0 0 30px rgba(188, 19, 254, 0.5);
+}
+
+
+.status-item {
+    padding: 20px;
+    background: rgba(188, 19, 254, 0.05);
+    border: 1px solid rgba(188, 19, 254, 0.2);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.status-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--logo-purple);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from {
+        opacity: 0.3;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Digital Stamp Aesthetic - Image Version */
+.cyber-stamp-img {
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+    width: 250px;
+    height: auto;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 35;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.4));
+}
+
+@media (max-width: 768px) {
+    .magazine-mockup {
+        width: 240px;
+        height: 340px;
+    }
+
+    .magazine-header h2 {
+        font-size: 2rem !important;
+    }
+
+    .cyber-stamp-img {
+        width: 180px;
+        left: 10%;
+    }
+}

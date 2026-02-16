@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
     <title>Infinity 6.0 | PSG Tech</title>
 
     <!-- External Libraries -->
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="css/events.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/logos-fix.css">
+    <link rel="stylesheet" href="css/special-sections.css">
 </head>
 
 <body class="no-scroll">
@@ -61,10 +63,11 @@
                 <a href="#home" class="nav-item">Home</a>
                 <a href="#about" class="nav-item">About</a>
                 <a href="#cash-prize" class="nav-item">Cash Prize</a>
+                <a href="#events" class="nav-item">Events</a>
                 <a href="#sponsors" class="nav-item">Sponsors</a>
                 <a href="alumni.html" class="nav-item">Alumni</a>
                 <a href="#journey" class="nav-item">Journey</a>
-                <a href="#events" class="nav-item">Events</a>
+                <a href="#magazine" class="nav-item">Magazine</a>
                 <a href="#contact" class="nav-item">Contact</a>
                 <a href="auth.html" class="nav-btn">Sign In</a>
             </div>
@@ -148,33 +151,6 @@
                     <div class="strip s2" style="background-image: url('assets/images/inifnity-logo-design.png');">
                     </div>
                     <div class="strip s3" style="background-image: url('assets/images/inifnity-logo-design.png');">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="section-divider"></div>
-
-        <!-- CASH PRIZE SECTION -->
-        <section id="cash-prize" class="prize-section">
-            <div class="outer-frame">
-                <div class="prize-card">
-                    <div class="scan-line"></div>
-                    <div class="corner top-left"></div>
-                    <div class="corner bottom-right"></div>
-
-                    <span class="cyber-label">Victory Rewards</span>
-
-                    <div class="amount-container">
-                        <span class="symbol">₹</span>
-                        <span id="decrypt-text" class="decrypt-box">000,000</span>
-                    </div>
-
-                    <p
-                        style="color: rgba(188, 19, 254, 0.8); font-size: 0.9rem; margin-top: 10px; font-weight: 500; letter-spacing: 1px;">
-                        + Exciting Coupons & Prizes</p>
-
-                    <div class="cyber-footer">
-                        PRIZE_POOL_VALUE :: VERIFIED_TRUE
                     </div>
                 </div>
             </div>
@@ -780,6 +756,97 @@
         </section>
         <div class="section-divider"></div>
 
+        <!-- DUAL SPLIT SECTION: REWARDS & COINS -->
+        <section id="rewards-coin" class="dual-split-section">
+            <!-- Left Half: Cash Prize -->
+            <div id="cash-prize" class="split-left prize-section">
+                <div class="prize-card"
+                    style="transform: scale(0.95); width: 100%; border: none; background: transparent;">
+                    <div class="scan-line"></div>
+                    <div class="corner top-left"></div>
+                    <div class="corner bottom-right"></div>
+                    <span class="cyber-label">Victory Rewards</span>
+                    <div class="amount-container">
+                        <span class="symbol">₹</span>
+                        <span id="decrypt-text" class="decrypt-box">000,000</span>
+                    </div>
+                    <p
+                        style="color: rgba(188, 19, 254, 0.8); font-size: 0.8rem; margin-top: 10px; font-weight: 500; letter-spacing: 1px;">
+                        + Exciting Coupons & Prizes</p>
+                    <div class="cyber-footer">PRIZE_POOL_VALUE :: VERIFIED_TRUE</div>
+                </div>
+            </div>
+
+            <!-- Right Half: Coin System -->
+            <div id="coin-system" class="split-right coin-section">
+                <div class="coin-container">
+                    <div class="coin-3d">
+                        <div class="coin-face front">
+                            <img src="assets/images/inifnity-logo-design.png" alt="Infinity Coin">
+                        </div>
+                        <div class="coin-face back">
+                            <img src="assets/images/inifnity-logo-design.png" alt="Infinity Coin">
+                        </div>
+                    </div>
+                </div>
+                <div class="coin-content">
+                    <h2 style="font-family: 'Orbitron'; font-size: 1.8rem; margin-bottom: 15px;">INFINITY <span
+                            class="purple-accent">COINS</span></h2>
+                    <p class="coin-description">
+                        Participate in thrilling events and earn coins based on your performance. The better you do, the
+                        more you collect. Redeem coins at stalls, climb the leaderboard, and shine on the grand finale.
+                        Top scorers will be celebrated with amazing prizes. Start now and collect your way to victory!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- E-MAGAZINE SECTION (ELEVATED) -->
+        <section id="magazine" class="magazine-section">
+            <div class="magazine-header" style="margin-bottom: 10px; text-align: center;">
+                <h2
+                    style="font-family: 'Orbitron'; font-size: 2.5rem; color: var(--white); text-shadow: 0 0 20px var(--logo-purple);">
+                    INFINITY <span class="purple-accent">E-MAGAZINE</span>
+                </h2>
+            </div>
+
+            <div class="magazine-3d-viewport">
+                <!-- Digital "Coming Soon" Stamp Image -->
+                <img src="assets/images/stamp.png" class="cyber-stamp-img" id="comingSoonStamp" alt="Coming Soon Stamp">
+
+                <!-- Laser Scanning Beam -->
+                <div class="scanning-beam" id="scanBeam"></div>
+
+                <!-- Terminal Overlay -->
+                <!-- ... -->
+                <div class="terminal-overlay">
+                    <span class="terminal-line">> INITIALIZING_SCAN...</span>
+                    <span class="terminal-line">> CONTENT_ENCRYPTED: 98%</span>
+                    <span class="terminal-line">> DATA_STREAM: ACTIVE</span>
+                    <span class="terminal-line">> BYPASSING_FIREWALL...</span>
+                    <span class="terminal-line">> STATUS: COMING_SOON</span>
+                </div>
+
+                <!-- 3D Magazine Mockup -->
+                <div class="magazine-mockup" id="magMockup">
+                    <div class="magazine-page cover">
+                        <img src="assets/images/inifnity-logo-design.png" alt="Infinity v6.0"
+                            style="padding: 60px; filter: grayscale(1) brightness(2);">
+                    </div>
+                </div>
+            </div>
+
+
+            <p
+                style="margin-top: 60px; font-size: 0.8rem; opacity: 0.5; font-family: 'Space Mono', monospace; text-align: center; color: var(--text-gray);">
+                [!] AUTHORIZED ACCESS ONLY // DATA_INTEGRITY: 100% // INFINITY_PUBLICATIONS
+            </p>
+        </section>
+
+        <div class="section-divider"></div>
+
         <!-- SPONSORS SECTION -->
         <section id="sponsors" class="sponsors-section">
             <header class="main-header">
@@ -1062,6 +1129,10 @@
             </div>
         </section>
         <div class="section-divider"></div>
+
+
+
+        <div class="section-divider"></div>
         <!-- CONTACT SECTION -->
         <section id="contact" class="contact-section">
             <div class="contact-header">
@@ -1214,55 +1285,64 @@
                         <option value="">Year of Study</option>
                     </select>
                 </div>
-
-                <h3 class="section-title">Contact Information</h3>
-                <div class="form-group">
-                    <input type="text" id="regName" placeholder="Full Name" required readonly>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="regRollNo" placeholder="Roll Number (e.g., 22L123)" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="regEmail" placeholder="Please enter official mail ID (@psgtech.ac.in)"
-                        pattern=".+@psgtech\.ac\.in" title="Please use your official @psgtech.ac.in email ID" required>
-                    <small class="form-hint">Official Institution Email (@psgtech.ac.in) Required</small>
-                </div>
-                <div class="form-group">
-                    <input type="tel" id="regPhone" placeholder="Phone Number (10 Digits)" pattern="[0-9]{10}"
-                        maxlength="10" required title="Please enter a valid 10-digit phone number">
-                </div>
                 <div class="form-group">
                     <input type="text" id="regCourse" placeholder="Department (e.g., CSE)" required>
                 </div>
 
-                <div id="teammateSection">
-                    <h3 class="section-title">Team Mate (Optional for Solo Events)</h3>
-                    <div class="form-group">
-                        <input type="text" id="teammateName" placeholder="Team Mate Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="teammateRollNo" placeholder="Team Mate Roll Number">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="teammateEmail" placeholder="Team Mate Email (@psgtech.ac.in)"
-                            pattern=".+@psgtech\.ac\.in" title="Please use official @psgtech.ac.in email ID">
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" id="teammatePhone" placeholder="Team Mate Phone">
-                    </div>
+                <h3 class="section-title">Team Member 1</h3>
+                <div class="form-group">
+                    <input type="text" id="regRollNo" placeholder="Roll Number (e.g., 22L123)" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="regName" placeholder="Full Name" required readonly>
+                </div>
+                <div class="form-group">
+                    <label style="display: block; margin-bottom: 5px; font-size: 0.8em; color: var(--logo-purple);">
+                        Official Email ID
+                    </label>
+                    <input type="email" id="regEmail" value="@psgtech.ac.in"
+                        style="border-color: rgba(188, 19, 254, 0.3) !important;" required>
+                    <small class="form-hint">Must be @psgtech.ac.in email</small>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="regPhone" placeholder="Phone Number" pattern="[0-9]{10}" maxlength="10"
+                        required title="Please enter a valid 10-digit phone number">
                 </div>
 
-                <button type="submit" class="cta-button">Confirm Registration</button>
+                <h3 class="section-title" id="member2Title">Team Member 2</h3>
+                <div class="form-group">
+                    <input type="text" id="teammateRollNo" placeholder="Roll Number">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="teammateName" placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                    <label style="display: block; margin-bottom: 5px; font-size: 0.8em; color: var(--logo-purple);">
+                        Official Email ID
+                    </label>
+                    <input type="email" id="teammateEmail" value="@psgtech.ac.in"
+                        style="border-color: rgba(188, 19, 254, 0.3) !important;">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="teammatePhone" placeholder="Phone Number">
+                </div>
+                <div
+                    style="margin-top: 30px; position: sticky; bottom: 0; background: #0a050f; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+                    <button type="submit" class="confirm-btn" id="regSubmitBtn">
+                        CONFIRM REGISTRATION
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 
     <!-- Scripts -->
-    <script type="module" src="js/firebase-config.js?v=1.4"></script>
-    <script type="module" src="js/auth.js?v=1.4"></script>
-    <script type="module" src="js/events.js?v=1.4"></script>
-    <script src="js/script.js?v=1.4"></script>
-    <script src="js/animations.js?v=1.4"></script>
+    <script type="module" src="js/firebase-config-module.js?v=1.6"></script>
+    <script type="module" src="js/auth.js?v=1.6"></script>
+    <script type="module" src="js/events.js?v=1.6"></script>
+    <script src="js/script.js?v=1.6"></script>
+    <script src="js/animations.js?v=1.6"></script>
+    <script src="js/dynamic-reveal.js"></script>
 </body>
 
 </html>

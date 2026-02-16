@@ -179,6 +179,6 @@ publicityForm.addEventListener('submit', async (e) => {
         console.error(error);
         alert("Registration failed: " + error.message);
         submitBtn.disabled = false;
-        submitBtn.innerText = "REGISTER PARTICIPANT";
+        submitBtn.innerText = "CONFIRM REGISTRATION";
     }
 });

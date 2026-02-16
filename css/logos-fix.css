@@ -1,7 +1,7 @@
 .hero-logos-container {
     position: absolute !important;
     top: 60px !important;
-    left: 20px !important;
+    left: 30px !important;
     z-index: 500 !important;
     pointer-events: none !important;
     display: block !important;

@@ -24,12 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tm_phone = $_POST['teammate_phone'] ?? null;
 
     // 1. Update MySQL
+    $event_name = $_POST['event_name'] ?? $reg['event_name'];
     $update_stmt = $pdo->prepare("UPDATE registrations SET 
-        name=?, email=?, phone=?, roll_no=?, events=?,
+        name=?, email=?, phone=?, roll_no=?, event_name=?,
         teammate_name=?, teammate_email=?, teammate_roll_no=?, teammate_phone=?
         WHERE id=?");
     $update_stmt->execute([
-        $name, $email, $phone, $roll_no, $events,
+        $name, $email, $phone, $roll_no, $event_name,
         $tm_name, $tm_email, $tm_roll, $tm_phone,
         $id
     ]);
@@ -157,17 +158,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="text" name="teammate_phone" value="<?php echo htmlspecialchars($reg['teammate_phone'] ?? ''); ?>">
                     </div>
 
-                    <h3 class="section-title" style="margin-top: 30px;">Events Selection</h3>
-                    <div class="checkbox-group">
-                        <?php 
-                        $selected = explode(", ", $reg['events']);
-                        $all_events = ["ProZone", "Incognito", "Inveringo", "TechRush", "Swaptics", "Fusion Frames", "GameHolix", "Tech Arcade"];
-                        foreach ($all_events as $event): ?>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="events[]" value="<?php echo $event; ?>" <?php echo in_array($event, $selected) ? 'checked' : ''; ?>>
-                                <?php echo $event; ?>
-                            </label>
-                        <?php endforeach; ?>
+                    <h3 class="section-title" style="margin-top: 30px;">Event Selection</h3>
+                    <div class="form-group">
+                        <select name="event_name" required>
+                            <?php 
+                            $all_events = ["ProZone", "Incognito", "Inveringo", "TechRush", "Swaptics", "Fusion Frames", "GameHolix", "Tech Arcade"];
+                            foreach ($all_events as $event): ?>
+                                <option value="<?php echo $event; ?>" <?php echo ($reg['event_name'] == $event) ? 'selected' : ''; ?>><?php echo $event; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
             </div>

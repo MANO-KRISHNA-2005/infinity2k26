@@ -85,22 +85,17 @@ if (
             $results[$event] = $team_id;
 
             $sql = "INSERT INTO registrations (
-                        team_id, event_name, user_id, events, roll_no, degree, year, department, 
+                        team_id, event_name, roll_no, degree, year, department, 
                         name, email, phone, 
                         teammate_name, teammate_email, teammate_roll_no, teammate_phone,
-                        firebase_doc_id, publicity_member
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        firebase_doc_id, publicity_member, slot, attendance_status
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')";
             
             $stmt = $pdo->prepare($sql);
             
-            // Keep the full events list in the 'events' column for compatibility if needed
-            $events_str = implode(", ", $data->events);
-
             $stmt->execute([
                 $team_id,
                 $event,
-                $data->userId,
-                $events_str,
                 $data->academicDetails->rollNo,
                 $data->academicDetails->degree,
                 $data->academicDetails->year,
@@ -113,8 +108,48 @@ if (
                 $data->teamMate->rollNo ?? null,
                 $data->teamMate->phone ?? null,
                 $data->firebaseDocId ?? null,
-                $data->publicityMember ?? null
+                $data->publicityMember ?? null,
+                null
             ]);
+
+            // For Leader (Member 1)
+            $leaderSql = "INSERT INTO users (email, roll_no, coins) 
+                          VALUES (?, ?, 0) 
+                          ON DUPLICATE KEY UPDATE roll_no = VALUES(roll_no)";
+            $stmtLeader = $pdo->prepare($leaderSql);
+            $stmtLeader->execute([$data->teamLeader->email, $data->academicDetails->rollNo]);
+            
+            // Get Leader's numeric ID
+            $stmtGetLeader = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+            $stmtGetLeader->execute([$data->teamLeader->email]);
+            $leaderRow = $stmtGetLeader->fetch();
+            $leaderId = $leaderRow['id'];
+            
+            // For Teammate (Member 2 - if exists)
+            if (!empty($data->teamMate->email)) {
+                $teammateRoll = $data->teamMate->rollNo ?? null;
+                $teammateSql = "INSERT INTO users (email, roll_no, coins) 
+                               VALUES (?, ?, 0) 
+                               ON DUPLICATE KEY UPDATE roll_no = COALESCE(VALUES(roll_no), roll_no)"; 
+                $stmtTeammate = $pdo->prepare($teammateSql);
+                $stmtTeammate->execute([$data->teamMate->email, $teammateRoll]);
+                
+                // Get Teammate's numeric ID
+                $stmtGetTeammate = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+                $stmtGetTeammate->execute([$data->teamMate->email]);
+                $teammateRow = $stmtGetTeammate->fetch();
+                $teammateId = $teammateRow['id'];
+                
+                // Link them numerically
+                $linkSql = "UPDATE users SET teammate_user_id = ? WHERE id = ?";
+                $stmtLink = $pdo->prepare($linkSql);
+                
+                // Leader -> Teammate
+                $stmtLink->execute([$teammateId, $leaderId]);
+                // Teammate -> Leader
+                $stmtLink->execute([$leaderId, $teammateId]);
+            }
+            
         }
 
         $pdo->commit();

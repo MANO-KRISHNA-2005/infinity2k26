@@ -191,7 +191,7 @@ nav {
 }
 
 .nav-logo-group img {
-    height: 80;
+    height: 40px;
 }
 
 .nav-links {
@@ -2211,4 +2211,39 @@ hr {
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
     margin: 8px 0;
+}
+
+/* --- CONFIRMATION BUTTONS (Global Consistency) --- */
+.confirm-btn {
+    width: 100%;
+    padding: 20px 40px;
+    background: #5d0c91;
+    /* Deep purple matching image */
+    color: #ccc;
+    /* Subtle gray text */
+    border: none;
+    border-radius: 25px;
+    /* High rounding */
+    font-weight: 900;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    letter-spacing: 3px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.confirm-btn:hover {
+    background: #6a0cad;
+    transform: scale(1.02);
+    color: white;
+}
+
+.confirm-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
 }

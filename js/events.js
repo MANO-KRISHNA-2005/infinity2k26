@@ -1,4 +1,4 @@
-import { auth, db } from './firebase-config.js';
+import { auth, db } from './firebase-config-module.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { collection, addDoc, serverTimestamp, query, where, getDocs, or } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -64,11 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                         <div class="reg-details">
                             <div class="detail-line">
-                                <strong>Name:</strong> ${reg.teamLeader.name} ${reg.academicDetails.rollNo ? `(${reg.academicDetails.rollNo})` : ''}
+                                <strong>Member 1:</strong> ${reg.teamLeader.name} ${reg.academicDetails.rollNo ? `(${reg.academicDetails.rollNo})` : ''}
                             </div>
                             ${reg.teamMate && reg.teamMate.name ? `
                             <div class="detail-line">
-                                <strong>Name:</strong> ${reg.teamMate.name} ${reg.teamMate.rollNo ? `(${reg.teamMate.rollNo})` : ''}
+                                <strong>Member 2:</strong> ${reg.teamMate.name} ${reg.teamMate.rollNo ? `(${reg.teamMate.rollNo})` : ''}
                             </div>
                             ` : ''}
                         </div>
@@ -94,7 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Pre-fill user data
         regName.value = currentUser.displayName || "";
-        regEmail.value = currentUser.email || "";
+        regEmail.value = currentUser.email || "@psgtech.ac.in";
+
+        // Reset teammate fields
+        const teammateEmail = document.getElementById("teammateEmail");
+        if (teammateEmail) teammateEmail.value = "@psgtech.ac.in";
 
         // Reset all checkboxes
         const checkboxes = document.querySelectorAll('input[name="eventCheck"]');
@@ -165,16 +169,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const teammateSection = document.getElementById("teammateSection");
     const eventCheckboxes = document.querySelectorAll('input[name="eventCheck"]');
 
-    const updateTeammateVisibility = () => {
-        const selectedEvents = Array.from(document.querySelectorAll('input[name="eventCheck"]:checked')).map(cb => cb.value);
-        const isOnlySolo = selectedEvents.length === 1 && selectedEvents[0] === "GameHolix";
+    const updateTeammateVisibility = (e) => {
+        const selectedCheckboxes = Array.from(document.querySelectorAll('input[name="eventCheck"]:checked'));
+        const selectedValues = selectedCheckboxes.map(cb => cb.value);
+
+        // Gameholix Solo Constraint
+        if (selectedValues.includes("GameHolix") && selectedValues.length > 1) {
+            alert("GameHolix is a SOLO event and cannot be combined with other events in a single registration.");
+            if (e && e.target) e.target.checked = false;
+            return;
+        }
+
+        const isGameholix = selectedValues.includes("GameHolix");
 
         if (teammateSection) {
-            teammateSection.style.display = isOnlySolo ? "none" : "block";
-            // Optional: clear teammate fields if hidden
-            if (isOnlySolo) {
+            teammateSection.style.display = isGameholix ? "none" : "block";
+            // Clear teammate fields if hidden
+            if (isGameholix) {
                 document.getElementById("teammateName").value = "";
-                document.getElementById("teammateEmail").value = "";
+                document.getElementById("teammateEmail").value = "@psgtech.ac.in";
                 document.getElementById("teammateRollNo").value = "";
                 document.getElementById("teammatePhone").value = "";
             }
@@ -182,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     eventCheckboxes.forEach(cb => {
-        cb.addEventListener('change', updateTeammateVisibility);
+        cb.addEventListener('change', (e) => updateTeammateVisibility(e));
     });
 
     // Update visibility when opening modal
@@ -345,6 +358,50 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     await Promise.all(firestorePromises);
+
+                    // 3. Initialize Coin System in Firestore (users collection)
+                    // This ensures users can see their team codes and 0 coins immediately
+                    const usersRef = collection(db, "users");
+                    const { setDoc, doc } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+
+                    const coinPromises = [];
+                    // For each event they registered for, we create/update their user coin entry?
+                    // The requirement says "unique user id and their teamcode".
+                    // If they stay 0 coins, it won't show on leaderboard anyway.
+                    // But they need to see it on their dashboard.
+
+                    for (const eventName of selectedEvents) {
+                        const teamId = teamIds[eventName];
+                        if (!teamId) continue;
+
+                        // Entry for Leader
+                        // We use a safe ID: leader_email_teamId
+                        const leaderDocId = `leader_${registrationData.teamLeader.email}_${teamId}`.replace(/[@.]/g, '_');
+                        coinPromises.push(setDoc(doc(db, "users", leaderDocId), {
+                            user_id: currentUser.uid,
+                            email: registrationData.teamLeader.email,
+                            name: registrationData.teamLeader.name,
+                            team_code: teamId,
+                            coins: 0,
+                            role: 'leader',
+                            last_updated: serverTimestamp()
+                        }, { merge: true }));
+
+                        // Entry for Teammate
+                        if (registrationData.teamMate && registrationData.teamMate.email) {
+                            const teammateDocId = `mate_${registrationData.teamMate.email}_${teamId}`.replace(/[@.]/g, '_');
+                            coinPromises.push(setDoc(doc(db, "users", teammateDocId), {
+                                user_id: null, // To be claimed on login
+                                email: registrationData.teamMate.email,
+                                name: registrationData.teamMate.name,
+                                team_code: teamId,
+                                coins: 0,
+                                role: 'teammate',
+                                last_updated: serverTimestamp()
+                            }, { merge: true }));
+                        }
+                    }
+                    await Promise.all(coinPromises);
 
                     alert("Registration Successful for: " + selectedEvents.join(", ") + "! See you at the events.");
                     loadMyRegistrations();

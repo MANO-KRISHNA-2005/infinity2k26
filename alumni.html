@@ -90,32 +90,6 @@
             transform: translateY(-2px);
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(45deg, #6a0dad, #bc13fe);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 900;
-            font-family: 'Orbitron', sans-serif;
-            cursor: pointer;
-            letter-spacing: 2px;
-            box-shadow: 0 10px 20px rgba(188, 19, 254, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(188, 19, 254, 0.5);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
         .divider-text {
             text-align: center;
             margin: 20px 0;
@@ -195,7 +169,7 @@
                 </div>
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" id="alumniEmail" placeholder="Enter your email" required>
+                    <input type="email" id="alumniEmail" placeholder="Enter your full email address" required>
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
@@ -209,7 +183,7 @@
                 <div id="authStatus"
                     style="text-align: center; margin-bottom: 15px; font-size: 0.85rem; color: #bc13fe;"></div>
 
-                <button type="submit" id="submitBtn" class="submit-btn" disabled>CONFIRM REGISTRATION</button>
+                <button type="submit" id="submitBtn" class="confirm-btn" disabled>CONFIRM REGISTRATION</button>
             </form>
 
             <div id="successMsg" class="success-message">

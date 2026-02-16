@@ -63,15 +63,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // 2. Insert into MySQL
     try {
-        $stmt = $pdo->prepare("INSERT INTO registrations (
-            user_id, name, email, phone, roll_no, degree, year, department, events,
-            teammate_name, teammate_email, teammate_roll_no, teammate_phone
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        
-        $stmt->execute([
-            $user_id, $name, $email, $phone, $roll_no, $degree, $year, $dept, $events,
-            $tm_name, $tm_email, $tm_roll, $tm_phone
-        ]);
+        $prefixes = [
+            "ProZone" => "P",
+            "Incognito" => "I",
+            "Inveringo" => "V",
+            "TechRush" => "TR",
+            "Swaptics" => "S",
+            "Fusion Frames" => "F",
+            "GameHolix" => "G",
+            "Tech Arcade" => "TA"
+        ];
+
+        $selected_events = $_POST['events'] ?? [];
+        if (empty($selected_events)) {
+            throw new Exception("Please select at least one event.");
+        }
+
+        foreach ($selected_events as $event) {
+            $prefix = $prefixes[$event] ?? "E";
+            
+            // Generate simple Team ID for admin manual entries
+            $team_id = $prefix . "M" . time() . rand(10, 99); 
+
+            $stmt = $pdo->prepare("INSERT INTO registrations (
+                team_id, event_name, roll_no, degree, year, department, 
+                name, email, phone, 
+                teammate_name, teammate_email, teammate_roll_no, teammate_phone,
+                publicity_member
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Admin/Manual')");
+            
+            $stmt->execute([
+                $team_id, $event, $roll_no, $degree, $year, $dept,
+                $name, $email, $phone,
+                $tm_name, $tm_email, $tm_roll, $tm_phone
+            ]);
+        }
         
         header('Location: registrations.php?msg=added');
         exit;

@@ -150,25 +150,6 @@ endif;
         }
         .event-item input { width: auto; }
         
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(45deg, #6a0dad, #bc13fe);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 900;
-            font-family: 'Orbitron', sans-serif;
-            cursor: pointer;
-            letter-spacing: 2px;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-        }
-        .submit-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(188, 19, 254, 0.5);
-        }
-        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         #resultOverlay {
             display: none;
@@ -241,11 +222,12 @@ endif;
                     </div>
                     <div class="form-group">
                         <label>Email Address (@psgtech.ac.in)</label>
-                        <input type="email" id="regEmail" required>
+                        <input type="email" id="regEmail" value="@psgtech.ac.in" style="border-color: rgba(188, 19, 254, 0.4);" required>
+                        <small style="font-size: 0.75rem; opacity: 0.6; color: var(--neon-purple);">Must be full @psgtech.ac.in address</small>
                     </div>
                     <div class="form-group">
                         <label>Department</label>
-                        <input type="text" id="regCourse" required>
+                        <input type="text" id="regCourse" placeholder="e.g. CSE / IT" required>
                     </div>
                 </div>
 
@@ -267,7 +249,7 @@ endif;
                         </div>
                         <div class="form-group">
                             <label>Teammate Email</label>
-                            <input type="email" id="tmEmail">
+                            <input type="email" id="tmEmail" value="@psgtech.ac.in" style="border-color: rgba(188, 19, 254, 0.4);">
                         </div>
                     </div>
                     <br>
@@ -311,7 +293,7 @@ endif;
                 </div>
             </div>
 
-            <button type="submit" id="submitBtn" class="submit-btn">REGISTER PARTICIPANT</button>
+            <button type="submit" id="submitBtn" class="confirm-btn">CONFIRM REGISTRATION</button>
         </form>
     </div>
 

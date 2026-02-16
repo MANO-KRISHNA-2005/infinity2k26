@@ -120,13 +120,82 @@
             margin-bottom: 15px;
         }
 
-        .empty-state {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 50px;
+        .coin-balance span {
+            background: rgba(255, 215, 0, 0.1) !important;
+            color: gold !important;
+            padding: 8px 18px !important;
+            border: 1px solid rgba(255, 215, 0, 0.3) !important;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        #leaderboardSection {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .leaderboard-table-alt {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .leaderboard-table-alt tr {
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            color: var(--text-gray);
+            transition: 0.3s;
+        }
+
+        .leaderboard-table-alt tr:hover {
+            background: rgba(188, 19, 254, 0.05);
+            transform: scale(1.01);
+        }
+
+        .leaderboard-table-alt td,
+        .leaderboard-table-alt th {
+            padding: 15px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes idPulse {
+            0% {
+                box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 35px rgba(188, 19, 254, 0.8);
+            }
+
+            100% {
+                box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+            }
+        }
+
+        .user-id-badge {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: white;
+            background: linear-gradient(45deg, var(--logo-purple), #bc13fe);
+            padding: 8px 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(188, 19, 254, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            letter-spacing: 3px;
+            display: inline-block;
+            animation: idPulse 2s infinite ease-in-out;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            font-family: 'Orbitron', sans-serif;
         }
     </style>
 </head>
@@ -137,7 +206,7 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo-group">
-                <img src="images/psg college logo.png" alt="PSG">
+                <img src="assets/images/psg college logo.png" alt="PSG">
             </div>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
@@ -154,8 +223,22 @@
                 <i class="bi bi-person"></i>
             </div>
             <div class="user-details">
-                <h1 id="dispName">Loading...</h1>
+                <h1 id="dispName">...</h1>
                 <p id="dispEmail">loading@example.com</p>
+                <div
+                    style="margin-top: 15px; display: flex; flex-direction: column; align-items: flex-start; gap: 5px;">
+                    <span
+                        style="opacity: 0.6; font-size: 0.75rem; font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 1px;">Global
+                        User Identity</span>
+                    <span id="userNumericId" class="user-id-badge">...</span>
+                </div>
+                <div class="coin-balance" id="sideCoinBalance"
+                    style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                    <span
+                        style="background: rgba(255, 215, 0, 0.1); color: gold; padding: 5px 15px; border-radius: 20px; border: 1px solid gold; font-family: 'Orbitron', sans-serif;">
+                        <i class="bi bi-coin"></i> <span id="coinCount">0</span> COINS
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -172,20 +255,40 @@
                     Events</a>
             </div>
         </div>
+
+        <!-- Leaderboard Section -->
+        <div id="leaderboardSection" style="margin-top: 60px; display: none;">
+            <h2 class="section-title">Infinity Leaderboard</h2>
+            <div class="card"
+                style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 20px; padding: 30px;">
+                <table style="width: 100%; border-collapse: collapse; color: white;">
+                    <thead>
+                        <tr
+                            style="text-align: left; color: var(--logo-purple); font-family: 'Orbitron', sans-serif; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <th style="padding: 15px;">Rank</th>
+                            <th style="padding: 15px;">Participant</th>
+                            <th style="padding: 15px;">Result</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
 
     <!-- Scripts -->
-    <script type="module" src="js/firebase-config.js?v=1.1"></script>
-    <script type="module" src="js/auth.js?v=1.1"></script>
-    <script type="module" src="js/dashboard.js?v=1.1"></script>
+    <script type="module" src="js/firebase-config-module.js?v=1.6"></script>
+    <script type="module" src="js/auth.js?v=1.6"></script>
+    <script type="module" src="js/dashboard.js?v=1.6"></script>
     <script type="module">
-        import { auth } from './js/firebase-config.js';
+        import { auth } from './js/firebase-config-module.js';
         import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 document.getElementById('dispName').textContent = user.displayName || "User";
-                document.getElementById('dispEmail').textContent = user.email;
                 document.getElementById('dispEmail').textContent = user.email;
 
                 // Set profile initiail
