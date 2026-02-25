@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // --- 5. COUNTDOWN TIMER ---
-    const eventDate = new Date("March 3, 2026 00:00:00").getTime();
+    const eventDate = new Date("March 5, 2026 00:00:00").getTime();
 
     const countdown = setInterval(() => {
         const now = new Date().getTime();
@@ -356,14 +356,16 @@ document.addEventListener("DOMContentLoaded", () => {
     journeyTimeline.to([".journey-title", ".journey-caption"], { autoAlpha: 0, duration: 0.5 });
     // --- 9. TEAM JACKPOT (AUTO SCROLL) ---
     const team = [
-        { role: "Secretary", name: "VISHAAL MUTHUKUMAR" },
+        { role: "Secretary", name: "VISAAL MUTHUKUMAR" },
         { role: "Secretary", name: "SOFIYA" },
         { role: "Executive Secretary", name: "MANO KRISHNA" },
         { role: "Executive Secretary", name: "THEEKSHANA" },
-        { role: "Treasurer", name: "SARVESH" },
+        { role: "Treasurer", name: "SHARVESH" },
         { role: "Treasurer", name: "SANTHIYA" },
         { role: "Technical Head", name: "SHIVAANI" },
-        { role: "Technical Head", name: "MADHU HARITHA" }
+        { role: "Technical Head", name: "MADHU HARITHA" },
+        { role: "Co-Organizer ", name: "Karthikeyan" },
+        { role: "Co-Organizer", name: "Dhana Harani" }
     ];
 
     const desList = document.getElementById('designation-list');

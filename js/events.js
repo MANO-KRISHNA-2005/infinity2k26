@@ -137,14 +137,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     years = [2, 3, 4];
                     break;
                 case "M.Sc":
-                    years = [1, 2, 3, 4];
+                    years = [2, 3, 4];
                     defaultYear = "1";
                     break;
-                case "B.Sc":
+                case "B.Sc(Applied Science)":
                     years = [2];
                     break;
                 case "MCA":
-                    years = [1];
+                    years = [1, 2];
                     defaultYear = "1";
                     break;
                 case "M.E":

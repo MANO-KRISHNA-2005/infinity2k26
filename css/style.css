@@ -1647,6 +1647,39 @@ h2,
     z-index: 20;
 }
 
+@media (max-width: 768px) {
+    .team-container {
+        width: 95%;
+        height: 80px;
+    }
+
+    .slot li {
+        font-size: 14px;
+        line-height: normal;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: normal;
+        text-align: center;
+        padding: 0 5px;
+    }
+
+    .left-side li {
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    .right-side li {
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .window-overlay {
+        height: 80px;
+    }
+}
+
 /* --- CONTACT SECTION --- */
 .contact-section {
     padding: 100px 8%;

@@ -51,26 +51,21 @@ function updateTeammateVisibility() {
 
     if (requiresTeammate) {
         teammateSection.style.display = 'block';
-        // Set required attributes
-        document.getElementById('tmName').setAttribute('required', 'true');
-        document.getElementById('tmPhone').setAttribute('required', 'true');
-        document.getElementById('tmRollNo').setAttribute('required', 'true');
-        document.getElementById('tmEmail').setAttribute('required', 'true');
+        document.getElementById('tmName').required = true;
+        document.getElementById('tmPhone').required = true;
+        document.getElementById('tmRollNo').required = true;
+        document.getElementById('tmEmail').required = true;
     } else {
-        // Only GameHolix or nothing selected
-        if (selectedEvents.includes("GameHolix")) {
-            // GameHolix is solo, but if user wants to add teammate optionally? 
-            // Requirement says "all events except gameholix is for two member". Implies GameHolix is 1 member.
-            // We can hide it or make it optional. Let's make it optional/hidden but strictly not required.
-            teammateSection.style.display = 'none';
-        } else {
-            teammateSection.style.display = 'none';
-        }
-
-        document.getElementById('tmName').removeAttribute('required');
-        document.getElementById('tmPhone').removeAttribute('required');
-        document.getElementById('tmRollNo').removeAttribute('required');
-        document.getElementById('tmEmail').removeAttribute('required');
+        teammateSection.style.display = 'none';
+        document.getElementById('tmName').required = false;
+        document.getElementById('tmPhone').required = false;
+        document.getElementById('tmRollNo').required = false;
+        document.getElementById('tmEmail').required = false;
+        // Clear them
+        document.getElementById('tmName').value = "";
+        document.getElementById('tmPhone').value = "";
+        document.getElementById('tmRollNo').value = "";
+        document.getElementById('tmEmail').value = "";
     }
 }
 
@@ -116,10 +111,10 @@ publicityForm.addEventListener('submit', async (e) => {
             phone: document.getElementById("regPhone").value
         },
         teamMate: {
-            name: document.getElementById("tmName").value,
-            email: document.getElementById("tmEmail").value,
-            rollNo: document.getElementById("tmRollNo").value,
-            phone: document.getElementById("tmPhone").value
+            name: document.getElementById("tmName").value.trim() || null,
+            email: document.getElementById("tmEmail").value.trim() || null,
+            rollNo: document.getElementById("tmRollNo").value.trim() || null,
+            phone: document.getElementById("tmPhone").value.trim() || null
         }
     };
 

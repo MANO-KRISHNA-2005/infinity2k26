@@ -111,14 +111,14 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const eventLogistics = {
-        "ProZone": { venue: "Hall A", date: "Feb 15", time: "10:00 AM" },
-        "Incognito": { venue: "Hall B", date: "Feb 15", time: "11:30 AM" },
-        "Inveringo": { venue: "Hall C", date: "Feb 15", time: "01:00 PM" },
-        "TechRush": { venue: "IoT Lab", date: "Feb 16", time: "09:30 AM" },
-        "Swaptics": { venue: "Hall D", date: "Feb 16", time: "11:00 AM" },
-        "Fusion Frames": { venue: "Coding Lab", date: "Feb 16", time: "02:00 PM" },
-        "GameHolix": { venue: "e-Sports Arena", date: "Feb 17", time: "10:00 AM" },
-        "Tech Arcade": { venue: "Main Quad", date: "Feb 17", time: "12:00 PM" }
+        "ProZone": { venue: "SIL LAB", date: "March 7", time: "10:15 AM - 11:00 AM" },
+        "Incognito": { venue: "OCL LAB", date: "March 5", time: "04:30 PM - 06:30 PM" },
+        "Inveringo": { venue: "CSL LAB", date: "March 5", time: "04:30 PM - 06:30 PM" },
+        "TechRush": { venue: "UGCC LAB", date: "March 7", time: "10:30 AM - 12:30 PM" },
+        "Swaptics": { venue: "UGCC LAB", date: "March 5", time: "04:30 PM - 06:30 PM" },
+        "Fusion Frames": { venue: "SIL LAB", date: "March 5", time: "04:30 PM - 06:30 PM" },
+        "GameHolix": { venue: "M503", date: "March 6", time: "04:30 PM - 06:30 PM" },
+        "Tech Arcade": { venue: "K502", date: "March 5 & 6", time: "04:30 PM - 06:30 PM" }
     };
 
     const renderRegistrations = (regs) => {

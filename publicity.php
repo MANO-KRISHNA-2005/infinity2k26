@@ -222,8 +222,8 @@ endif;
                     </div>
                     <div class="form-group">
                         <label>Email Address (@psgtech.ac.in)</label>
-                        <input type="email" id="regEmail" value="@psgtech.ac.in" style="border-color: rgba(188, 19, 254, 0.4);" required>
-                        <small style="font-size: 0.75rem; opacity: 0.6; color: var(--neon-purple);">Must be full @psgtech.ac.in address</small>
+                        <input type="email" id="regEmail" placeholder="e.g. 23x021@psgtech.ac.in" style="border-color: rgba(188, 19, 254, 0.4);" required>
+                        <small style="font-size: 0.75rem; opacity: 0.6; color: var(--neon-purple);">Enter full @psgtech.ac.in address</small>
                     </div>
                     <div class="form-group">
                         <label>Department</label>
@@ -249,7 +249,7 @@ endif;
                         </div>
                         <div class="form-group">
                             <label>Teammate Email</label>
-                            <input type="email" id="tmEmail" value="@psgtech.ac.in" style="border-color: rgba(188, 19, 254, 0.4);">
+                            <input type="email" id="tmEmail" placeholder="teammate@psgtech.ac.in" style="border-color: rgba(188, 19, 254, 0.4);">
                         </div>
                     </div>
                     <br>

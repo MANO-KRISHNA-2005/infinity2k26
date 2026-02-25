@@ -317,7 +317,21 @@
     }
 
     .cyber-stamp-img {
-        width: 180px;
-        left: 10%;
+        width: 140px;
+        left: 50%;
+        top: 80%;
+        transform: translate(-50%, -50%) rotate(-15deg);
+    }
+
+    .terminal-overlay {
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 5, 15, 0.9);
+        border-left: none;
+        border-bottom: 2px solid var(--logo-purple);
+        font-size: 0.8rem;
+        padding: 15px;
     }
 }
